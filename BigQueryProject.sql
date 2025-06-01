@@ -15,9 +15,6 @@ WITH email_metrics AS (
     GROUP BY 1, 2
 ),
 
-
-
-
 - Retrieve account metrics: count, send interval, verification, unsubscription
 account_metrics AS (
     SELECT
@@ -33,9 +30,6 @@ account_metrics AS (
     JOIN `data-analytics-mate.DA.session_params` sp ON acs.ga_session_id = sp.ga_session_id
     GROUP BY 1, 2, 3, 4, 5
 ),
-
-
-
 
 -- Combine account and email event metrics using UNION ALL
 total_country_counts AS (
@@ -54,9 +48,6 @@ total_country_counts AS (
        
         UNION ALL
 
-
-
-
        -- Email event data
         SELECT
             date,
@@ -70,14 +61,12 @@ total_country_counts AS (
             visit_msg
         FROM email_metrics),
 
-
 -- Add total account and email counts per country to the combined metrics
 total_cnt AS
 (SELECT *,
     SUM(account_cnt) OVER (partition by country) AS total_country_account_cnt,
     SUM(sent_msg) OVER (partition by country) AS total_country_sent_cnt
 FROM total_country_counts),
-
 
 -- Add ranking based on the previously calculated totals per country
 rank_total AS
