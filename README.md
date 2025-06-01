@@ -41,7 +41,7 @@ The dashboard contains:
 - Ranked tables for **Top 10 countries** by accounts and emails sent.
 - Time-series chart of **email sending volume**.
 
-![Dashboard Screenshot](./path/to/dashboard-image.png)
+![Dashboard Screenshot](images/dashboard.png)
 
 ## Use Cases
 
